@@ -88,7 +88,8 @@ $ cd dio-cities-api
  6. Creating a container to run a PostgresSQL.
 
     ```basic
-    docker run --name postgres-server --network=postgres-network -e "POSTGRES_PASSWORD=Your_Password" -p 5432:5432 -v c:\postgresdb\data:/data -d -e "POSTGRES_DB=cities" postgres
+    docker run --name postgres-server --network=postgres-network -e "POSTGRES_PASSWORD=Your_Password" 
+    -p 5432:5432 -v c:\postgresdb\data:/data -d -e "POSTGRES_DB=cities" postgres
     ```
 
     ![image-20210228153533673](./img/image-20210228153533673.png)
