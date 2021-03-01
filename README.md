@@ -175,7 +175,7 @@ $ cd dio-cities-api
      select earth_distance(ll_to_earth(-21.95840072631836,-47.98820114135742), ll_to_earth(-22.01740074157715,-47.88600158691406)) as distance;
      ```
 
-     ![image-20210228151458181](./img/image-20210228151458181.png | width=90)
+     ![image-20210228151458181](./img/image-20210228151458181.png){:height="90%"}
 
  16. Quiting the SQL terminal.
 
