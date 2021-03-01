@@ -64,7 +64,7 @@ $ cd dio-cities-api
     docker images
     ```
 
-    ![image-20210228160227261](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228160227261.png)
+    ![image-20210228160227261](./img/image-20210228160227261.png)
 
  4. Creating a network to execute the containers.
 
