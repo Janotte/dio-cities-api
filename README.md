@@ -64,7 +64,7 @@ $ cd dio-cities-api
     docker images
     ```
 
-    ![image-20210228160227261](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228160227261.png)
+    ![image-20210228160227261.png](./img/image-20210228160227261.png)
 
  4. Creating a network to execute the containers.
 
@@ -72,7 +72,7 @@ $ cd dio-cities-api
     docker network create --driver bridge postgres-network
     ```
 
-    ![image-20210228160640236](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228160640236.png)
+    ![image-20210228160640236](./img/image-20210228160640236.png)
 
  5. Creating folders for Docker volumes and copy scripts
 
@@ -83,7 +83,7 @@ $ cd dio-cities-api
     copy C:\Dados\Projetos\dio-cities-api\data\*.sql
     ```
 
-    ![image-20210228160833209](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228160833209.png)
+    ![image-20210228160833209](./img/image-20210228160833209.png)
 
  6. Creating a container to run a PostgresSQL.
 
@@ -91,7 +91,7 @@ $ cd dio-cities-api
     docker run --name postgres-server --network=postgres-network -e "POSTGRES_PASSWORD=Your_Password" -p 5432:5432 -v c:\postgresdb\data:/data -d -e "POSTGRES_DB=cities" postgres
     ```
 
-    ![image-20210228153533673](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228153533673.png)
+    ![image-20210228153533673](./img/image-20210228153533673.png)
 
     
 
@@ -101,7 +101,7 @@ $ cd dio-cities-api
     docker ps
     ```
 
-    ![image-20210228153644240](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228153644240.png)
+    ![image-20210228153644240](./img/image-20210228153644240.png)
 
  8. Geting inside the postgres docker container.
 
@@ -109,7 +109,7 @@ $ cd dio-cities-api
     docker exec -it postgres-server bash
     ```
 
-    ![image-20210228153751876](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228153751876.png)
+    ![image-20210228153751876](./img/image-20210228153751876.png)
 
  9. Populating the cities database.
 
@@ -121,13 +121,13 @@ $ cd dio-cities-api
     psql -h 127.0.0.1 -d cities -U postgres -f extension.sql
     ```
 
-    ![image-20210228154009429](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228154009429.png)
+    ![image-20210228154009429](./img/image-20210228154009429.png)
 
-    ![image-20210228154115770](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228154115770.png)
+    ![image-20210228154115770](./img/image-20210228154115770.png)
 
-    ![image-20210228154211353](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228154211353.png)
+    ![image-20210228154211353](./img/image-20210228154211353.png)
 
-    ![image-20210228154251048](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228154251048.png)
+    ![image-20210228154251048](./img/image-20210228154251048.png)
 
  10. Listing all databases for postgres user.
 
@@ -135,7 +135,7 @@ $ cd dio-cities-api
      psql -U postgres -l
      ```
 
-     ![image-20210228154359235](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228154359235.png)
+     ![image-20210228154359235](./img/image-20210228154359235.png)
 
  11. Choosing the relevant db we want to use.
 
@@ -143,7 +143,7 @@ $ cd dio-cities-api
      psql -U postgres -d cities
      ```
 
-     ![image-20210228154446850](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228154446850.png)
+     ![image-20210228154446850](./img/image-20210228154446850.png)
 
  12. Geting all the tables of this database using command /d.
 
@@ -151,7 +151,7 @@ $ cd dio-cities-api
      \d
      ```
 
-     ![image-20210228154532435](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228154532435.png)
+     ![image-20210228154532435](./img/image-20210228154532435.png)
 
  13. Viewing the schema of a specific table.
 
@@ -159,7 +159,7 @@ $ cd dio-cities-api
      \d country
      ```
 
-     ![image-20210228151200837](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228151200837.png)
+     ![image-20210228151200837](./img/image-20210228151200837.png)
 
  14. Calculating the distance between two cities using the Point method.
 
@@ -167,7 +167,7 @@ $ cd dio-cities-api
      select ((select lat_lon from city where id = 4929) <@> (select lat_lon from city where id=5254)) as distance;
      ```
 
-     ![image-20210228151353036](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228151353036.png)
+     ![image-20210228151353036](./img/image-20210228151353036.png)
 
  15. Calculating the distance between two cities using the Cube method.
 
@@ -175,7 +175,7 @@ $ cd dio-cities-api
      select earth_distance(ll_to_earth(-21.95840072631836,-47.98820114135742), ll_to_earth(-22.01740074157715,-47.88600158691406)) as distance;
      ```
 
-     ![image-20210228151458181](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228151458181.png)
+     ![image-20210228151458181](./img/image-20210228151458181.png)
 
  16. Quiting the SQL terminal.
 
@@ -184,7 +184,7 @@ $ cd dio-cities-api
      exit
      ```
 
-     ![image-20210228154653407](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228154653407.png)
+     ![image-20210228154653407](./img/image-20210228154653407.png)
 
 ---
 
@@ -196,12 +196,12 @@ To run the project on the terminal, enter the following command:
 java -jar cities-api-0.0.1-SNAPSHOT.jar
 ```
 
-![image-20210228164439580](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228164439580.png)
+![image-20210228164439580](./img/image-20210228164439580.png)
 
 
 To run the tests with Postman, import the cities collection.
 
-![image-20210228165105062](C:\Users\sjano\AppData\Roaming\Typora\typora-user-images\image-20210228165105062.png)
+![image-20210228165105062](./img/image-20210228165105062.png)
 
 ---
 
