@@ -64,7 +64,11 @@ $ cd dio-cities-api
     docker images
     ```
 
+<<<<<<< HEAD
     ![image-20210228160227261.png](./img/image-20210228160227261.png)
+=======
+    ![image-20210228160227261](./img/image-20210228160227261.png)
+>>>>>>> bb50c01ff257378ed82bc3b00ff3954630709f54
 
  4. Creating a network to execute the containers.
 
@@ -88,7 +92,8 @@ $ cd dio-cities-api
  6. Creating a container to run a PostgresSQL.
 
     ```basic
-    docker run --name postgres-server --network=postgres-network -e "POSTGRES_PASSWORD=Your_Password" -p 5432:5432 -v c:\postgresdb\data:/data -d -e "POSTGRES_DB=cities" postgres
+    docker run --name postgres-server --network=postgres-network -e "POSTGRES_PASSWORD=Your_Password" 
+    -p 5432:5432 -v c:\postgresdb\data:/data -d -e "POSTGRES_DB=cities" postgres
     ```
 
     ![image-20210228153533673](./img/image-20210228153533673.png)
@@ -172,7 +177,8 @@ $ cd dio-cities-api
  15. Calculating the distance between two cities using the Cube method.
 
      ```basic
-     select earth_distance(ll_to_earth(-21.95840072631836,-47.98820114135742), ll_to_earth(-22.01740074157715,-47.88600158691406)) as distance;
+     select earth_distance(ll_to_earth(-21.95840072631836,-47.98820114135742), 
+     ll_to_earth(-22.01740074157715,-47.88600158691406)) as distance;
      ```
 
      ![image-20210228151458181](./img/image-20210228151458181.png)
