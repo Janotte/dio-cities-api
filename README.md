@@ -4,8 +4,10 @@
   <a href="https://github.com/Janotte/dio-cities-api#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="https://github.com/Janotte/dio-cities-api#clone">Clone</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="https://github.com/Janotte/dio-cities-api#database">Database</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/Janotte/dio-cities-api#api">API</a>
+  <a href="https://github.com/Janotte/dio-cities-api#api">API</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/Janotte/dio-cities-api#deploy">Deploy</a>
 </p>
+
 
 
 ---
@@ -63,13 +65,9 @@ $ cd dio-cities-api
     ```basic
     docker images
     ```
-
-<<<<<<< HEAD
+    
     ![image-20210228160227261.png](./img/image-20210228160227261.png)
-=======
-    ![image-20210228160227261](./img/image-20210228160227261.png)
->>>>>>> bb50c01ff257378ed82bc3b00ff3954630709f54
-
+    
  4. Creating a network to execute the containers.
 
     ```basic
@@ -199,6 +197,10 @@ $ cd dio-cities-api
 To run the project on the terminal, enter the following command:
 
 ```
+{%_include/codeHeader.html%}
+```
+
+```
 java -jar cities-api-0.0.1-SNAPSHOT.jar
 ```
 
@@ -211,9 +213,134 @@ To run the tests with Postman, import the cities collection.
 
 ---
 
+## DEPLOY
+
+In this section we will be exemplifying Deploy on Heroku.
+
+1. Let's go to the project folder
+
+   ```bash
+   CD\
+   C:\Dados\Projetos\dio-cities-api
+   ```
+
+   
+
+2. Now we will log in to Heroku:
+
+   ```
+   C:\Dados\Projetos\dio-cities-api\heroku login
+   ```
+
+   ![image-20210306224620893](./img/image-20210306224620893.png)
+
+3. Created the Heroku project:
+
+   ```bash
+   C:\Dados\Projetos\dio-cities-api\heroku create
+   ```
+
+   ![image-20210306225602560](./img/image-20210306225602560.png)
+
+4. Verify origins in app:
+
+   ![image-20210306230059840](./img/image-20210306230059840.png)
+
+5. Now we are going to send the project to Heroku, after finishing sending, the dependencies will be installed and then it will be deployed.
+
+   ```bash
+   git push heroku master
+   ```
+
+   ![image-20210306230709241](./img/image-20210306230709241.png)
+
+   ![image-20210306231015580](./img/image-20210306231015580.png)
+
+6. To check the deployment logs use the following command. To exit, use Ctrl C:
+
+   ```bash
+   heroku logs --tail
+   ```
+
+   ![image-20210306232055374](./img/image-20210306232055374.png)
+
+7. Let's access the project on Heroku and get the database information needed to populate the data.
+
+   ![image-20210306233120328](./img/image-20210306233120328.png)
+
+   ![image-20210306233702060](./img/image-20210306233702060.png)
+
+   ![image-20210306234308626](./img/image-20210306234308626.png)
+
+8. To populate our project database on Heroku, we will access the postgres container in the docker.
+
+   ```bash
+   docker exec -it postgres-server bash
+   ```
+
+   ![image-20210306235124104](./img/image-20210306235124104.png)
+
+9. Exporting the database password
+
+   ```bash
+   export PGPASSWORD='c8abc0f04be176474607dad117fc25b53ed75e1b31a3430581fe1180b65889fe'
+   ```
+
+   ![image-20210306235519199](./img/image-20210306235519199.png)
+
+10. Use the following syntax to populate the Heroku database.
+
+    ```bash
+    psql -h <Host> -d <Database> -U <User> -f scritp.sql
+    ```
+
+    
+
+11. Populating the country table
+
+    ```bash
+    psql -h ec2-54-163-140-104.compute-1.amazonaws.com -d dc5t4c80ls8vah -U suusvrdowrckjw -f country.sql
+    ```
+
+    ![image-20210307001323118](./img/image-20210307001323118.png)
+
+12. Populating the state table
+
+    ```bach
+    psql -h ec2-54-163-140-104.compute-1.amazonaws.com -d dc5t4c80ls8vah -U suusvrdowrckjw -f state.sql
+    ```
+
+    ![image-20210307001535575](./img/image-20210307001535575.png)
+
+13. Populating the city table
+
+    ```bash
+    psql -h ec2-54-163-140-104.compute-1.amazonaws.com -d dc5t4c80ls8vah -U suusvrdowrckjw -f city.sql
+    ```
+
+    ![image-20210307001740278](./img/image-20210307001740278.png)
+
+14. Creating the necessary extensions
+
+    ```bash
+    psql -h ec2-54-163-140-104.compute-1.amazonaws.com -d dc5t4c80ls8vah -U suusvrdowrckjw -f extension.sql
+    ```
+
+    ![image-20210307001833959](./img/image-20210307001833959.png)
+
+15. To test the application with Postman, change the host address.
+
+    ![image-20210307002559770](./img/image-20210307002559770.png)
+
+
+
+
+---
+
 <h3 align="center">
-  Desenvolvido por Sandro André Janotte
+  Developed by Sandro André Janotte
   <br/>
+
 
   <a align="center">
 
@@ -221,6 +348,4 @@ To run the tests with Postman, import the cities collection.
 &nbsp;
   [![GitHub](https://i.stack.imgur.com/tskMh.png) GitHub](https://github.com/janotte)
   </a>
-</h3>
 
----
